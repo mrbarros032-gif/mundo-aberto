@@ -25,8 +25,11 @@ jobs:
       - name: Create local.properties
         run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
 
-      - name: Generate Gradle Wrapper
+      - name: Install Gradle
         run: |
+          wget -q https://services.gradle.org/distributions/gradle-8.2-bin.zip
+          unzip -q gradle-8.2-bin.zip
+          export PATH=$PWD/gradle-8.2/bin:$PATH
           gradle wrapper --gradle-version 8.2
 
       - name: Grant execute permission for gradlew
